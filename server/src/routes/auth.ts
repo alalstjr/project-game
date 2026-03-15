@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { getDb } from '../database.js';
 import { hashPassword, comparePassword } from '../utils/password.js';
 import { signToken } from '../utils/jwt.js';
+import { INITIAL_FREE_PULLS } from '../constants.js';
 
 const router = Router();
 
@@ -16,10 +17,10 @@ router.post('/register', (req: Request, res: Response) => {
   try {
     const hash = hashPassword(password);
     const result = db.prepare(
-      'INSERT INTO users (username, password_hash) VALUES (?, ?)'
-    ).run(username, hash);
+      'INSERT INTO users (username, password_hash, pull_tickets) VALUES (?, ?, ?)'
+    ).run(username, hash, INITIAL_FREE_PULLS);
     const token = signToken(result.lastInsertRowid as number, username);
-    res.json({ token, user: { id: result.lastInsertRowid, username, pullTickets: 300 } });
+    res.json({ token, user: { id: result.lastInsertRowid, username, pullTickets: INITIAL_FREE_PULLS } });
   } catch (err: any) {
     if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
       res.status(409).json({ error: 'Username already taken' });
