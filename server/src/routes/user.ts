@@ -7,9 +7,13 @@ const router = Router();
 router.use(authMiddleware);
 
 router.get('/me', (req: AuthRequest, res: Response) => {
-  const tickets = getTickets(req.userId!);
   const db = getDb();
   const user = db.prepare('SELECT id, username, created_at, first_login, profile_type, profile_value FROM users WHERE id = ?').get(req.userId!) as any;
+  if (!user) {
+    res.status(401).json({ error: 'User not found' });
+    return;
+  }
+  const tickets = getTickets(req.userId!);
   const totalCards = (db.prepare('SELECT COUNT(*) as cnt FROM user_cards WHERE user_id = ?').get(req.userId!) as any).cnt;
   const uniquePokemon = (db.prepare('SELECT COUNT(DISTINCT pokemon_id) as cnt FROM user_cards WHERE user_id = ?').get(req.userId!) as any).cnt;
 
