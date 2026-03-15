@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 300">
+  <defs>
+    <!-- 봉지 그라데이션 -->
+    <linearGradient id="packBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B0A5E"/>
+      <stop offset="30%" stop-color="#2D1B8E"/>
+      <stop offset="60%" stop-color="#4A2BC2"/>
+      <stop offset="100%" stop-color="#1B0A5E"/>
+    </linearGradient>
+    <!-- 빛나는 테두리 -->
+    <linearGradient id="borderGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="50%" stop-color="#FF6B35"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </linearGradient>
+    <!-- 포켓볼 빨간색 -->
+    <linearGradient id="pokered" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF3D3D"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+    <!-- 광택 -->
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.15)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.08)"/>
+    </linearGradient>
+    <!-- 별 빛 -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 봉지 본체 -->
+  <rect x="4" y="4" width="212" height="292" rx="16" ry="16" fill="url(#packBg)"/>
+  <!-- 테두리 -->
+  <rect x="4" y="4" width="212" height="292" rx="16" ry="16" fill="none" stroke="url(#borderGlow)" stroke-width="2.5" opacity="0.7"/>
+  <!-- 내부 테두리 -->
+  <rect x="14" y="14" width="192" height="272" rx="10" ry="10" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
+
+  <!-- 광택 오버레이 -->
+  <rect x="4" y="4" width="212" height="292" rx="16" ry="16" fill="url(#sheen)"/>
+
+  <!-- 상단 장식 띠 -->
+  <rect x="14" y="30" width="192" height="3" rx="1.5" fill="#FFD700" opacity="0.3"/>
+
+  <!-- 포켓볼 (중앙 큰) -->
+  <g transform="translate(110, 140)">
+    <!-- 외곽 -->
+    <circle cx="0" cy="0" r="52" fill="#222" stroke="#FFD700" stroke-width="1.5" opacity="0.8"/>
+    <!-- 상단 빨간색 -->
+    <path d="M 0 -52 A 52 52 0 0 1 52 0 H -52 A 52 52 0 0 1 0 -52 Z" fill="url(#pokered)" opacity="0.9"/>
+    <!-- 하단 흰색 -->
+    <path d="M 0 52 A 52 52 0 0 1 -52 0 H 52 A 52 52 0 0 1 0 52 Z" fill="#E8E8E8" opacity="0.9"/>
+    <!-- 가운데 띠 -->
+    <rect x="-52" y="-4.5" width="104" height="9" fill="#333"/>
+    <!-- 버튼 외곽 -->
+    <circle cx="0" cy="0" r="14" fill="#333"/>
+    <!-- 버튼 -->
+    <circle cx="0" cy="0" r="10" fill="#F0F0F0" stroke="#555" stroke-width="1.5"/>
+    <!-- 버튼 하이라이트 -->
+    <circle cx="-2" cy="-3" r="4" fill="#fff" opacity="0.5"/>
+    <!-- 포켓볼 상단 하이라이트 -->
+    <ellipse cx="-14" cy="-28" rx="18" ry="9" fill="#fff" opacity="0.15" transform="rotate(-15, -14, -28)"/>
+  </g>
+
+  <!-- 상단 텍스트: POKEMON -->
+  <text x="110" y="62" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="22" fill="#FFD700" filter="url(#glow)" letter-spacing="3">POKÉMON</text>
+
+  <!-- 하단 텍스트: CARD PACK -->
+  <text x="110" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="rgba(255,215,0,0.5)" letter-spacing="4">CARD PACK</text>
+
+  <!-- 하단 장식 띠 -->
+  <rect x="14" y="248" width="192" height="3" rx="1.5" fill="#FFD700" opacity="0.3"/>
+
+  <!-- 장식 별들 -->
+  <g filter="url(#glow)" opacity="0.6">
+    <polygon points="40,85 42,91 48,91 43,95 45,101 40,97 35,101 37,95 32,91 38,91" fill="#FFD700"/>
+    <polygon points="180,85 182,91 188,91 183,95 185,101 180,97 175,101 177,95 172,91 178,91" fill="#FFD700"/>
+    <polygon points="40,195 42,201 48,201 43,205 45,211 40,207 35,211 37,205 32,201 38,201" fill="#FFD700"/>
+    <polygon points="180,195 182,201 188,201 183,205 185,211 180,207 175,211 177,205 172,201 178,201" fill="#FFD700"/>
+  </g>
+
+  <!-- 뜯기선 (상단) -->
+  <line x1="4" y1="80" x2="216" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="6,4"/>
+</svg>

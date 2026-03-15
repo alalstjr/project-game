@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 외곽 원 -->
+  <circle cx="50" cy="50" r="48" fill="#333" stroke="#222" stroke-width="2"/>
+  <!-- 상단 빨간색 -->
+  <path d="M 50 2 A 48 48 0 0 1 98 50 H 2 A 48 48 0 0 1 50 2 Z" fill="#EE1515"/>
+  <!-- 하단 흰색 -->
+  <path d="M 50 98 A 48 48 0 0 1 2 50 H 98 A 48 48 0 0 1 50 98 Z" fill="#F0F0F0"/>
+  <!-- 가운데 검은 띠 -->
+  <rect x="2" y="46" width="96" height="8" fill="#333"/>
+  <!-- 가운데 버튼 외곽 -->
+  <circle cx="50" cy="50" r="14" fill="#333"/>
+  <!-- 가운데 버튼 안쪽 -->
+  <circle cx="50" cy="50" r="10" fill="#F0F0F0" stroke="#333" stroke-width="2"/>
+  <!-- 버튼 하이라이트 -->
+  <circle cx="47" cy="47" r="4" fill="#fff" opacity="0.6"/>
+  <!-- 상단 하이라이트 -->
+  <ellipse cx="36" cy="24" rx="16" ry="8" fill="#fff" opacity="0.25" transform="rotate(-20, 36, 24)"/>
+</svg>

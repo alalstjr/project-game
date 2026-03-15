@@ -1,0 +1,362 @@
+/*
+  Pokemon Card Holographic Effect
+  Tuned for dark card backgrounds
+*/
+
+.holo-card {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --card-opacity: 0;
+  --background-x: 50%;
+  --background-y: 50%;
+  --pointer-from-center: 0;
+  --pointer-from-top: 0.5;
+  --pointer-from-left: 0.5;
+
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+
+/* ============================================
+   SHINE LAYER
+   ============================================ */
+
+.holo-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+
+  background: transparent;
+  mix-blend-mode: color-dodge;
+  opacity: var(--card-opacity);
+  transition: opacity 0.3s ease;
+
+  will-change: opacity, background-image, background-size,
+    background-position, filter;
+}
+
+.holo-shine::before,
+.holo-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+
+/* ============================================
+   GLARE LAYER
+   ============================================ */
+
+.holo-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    hsla(0, 0%, 100%, 0.12) 10%,
+    hsla(0, 0%, 100%, 0.03) 40%,
+    transparent 65%
+  );
+
+  opacity: var(--card-opacity);
+  mix-blend-mode: overlay;
+  transition: opacity 0.3s ease;
+}
+
+.holo-glare::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+
+/* ============================================
+   S GRADE - Regular Holo
+   ============================================ */
+
+.holo-card.grade-S .holo-shine {
+  background-image:
+    linear-gradient(
+      133deg,
+      hsla(330, 65%, 35%, 0.6) 0%,
+      hsla(280, 60%, 30%, 0.5) 10%,
+      hsla(230, 65%, 35%, 0.6) 20%,
+      hsla(195, 70%, 30%, 0.5) 30%,
+      hsla(160, 60%, 28%, 0.6) 40%,
+      hsla(100, 55%, 30%, 0.5) 50%,
+      hsla(60, 65%, 32%, 0.6) 60%,
+      hsla(30, 70%, 30%, 0.5) 70%,
+      hsla(0, 65%, 32%, 0.6) 80%,
+      hsla(330, 65%, 35%, 0.5) 90%,
+      hsla(280, 60%, 30%, 0.6) 100%
+    );
+
+  background-position:
+    calc(((50% - var(--background-x)) * 2.5) + 50%)
+    calc(((50% - var(--background-y)) * 3) + 50%);
+
+  background-size: 300% 300%;
+  filter: brightness(0.9) saturate(1.2);
+}
+
+/* S grade - spotlight focus */
+.holo-card.grade-S .holo-shine::after {
+  background-image:
+    radial-gradient(
+      farthest-corner circle
+        at var(--pointer-x) var(--pointer-y),
+        hsla(0, 0%, 60%, 0.3) 0%,
+        hsla(0, 0%, 30%, 0.05) 30%,
+        transparent 70%
+    );
+  mix-blend-mode: luminosity;
+  filter: brightness(0.5) contrast(3);
+}
+
+/* S grade glare */
+.holo-card.grade-S .holo-glare {
+  opacity: calc( var(--card-opacity) * 0.3 );
+}
+
+
+/* ============================================
+   SS GRADE - Enhanced Holo
+   ============================================ */
+
+.holo-card.grade-SS .holo-shine {
+  background-image:
+    linear-gradient(
+      133deg,
+      hsla(330, 70%, 38%, 0.65) 0%,
+      hsla(280, 65%, 33%, 0.55) 10%,
+      hsla(230, 70%, 38%, 0.65) 20%,
+      hsla(195, 75%, 33%, 0.55) 30%,
+      hsla(160, 65%, 30%, 0.65) 40%,
+      hsla(100, 60%, 33%, 0.55) 50%,
+      hsla(60, 70%, 35%, 0.65) 60%,
+      hsla(30, 75%, 33%, 0.55) 70%,
+      hsla(0, 70%, 35%, 0.65) 80%,
+      hsla(330, 70%, 38%, 0.55) 90%,
+      hsla(280, 65%, 33%, 0.65) 100%
+    );
+
+  background-position:
+    calc(((50% - var(--background-x)) * 3) + 50%)
+    calc(((50% - var(--background-y)) * 3.5) + 50%);
+
+  background-size: 250% 250%;
+  filter: brightness(0.95) saturate(1.3);
+}
+
+/* SS grade - secondary shifted layer */
+.holo-card.grade-SS .holo-shine::before {
+  background-image:
+    linear-gradient(
+      82deg,
+      hsla(60, 55%, 30%, 0.3) 0%,
+      hsla(100, 50%, 28%, 0.25) 12%,
+      hsla(170, 55%, 26%, 0.3) 24%,
+      hsla(220, 58%, 30%, 0.25) 36%,
+      hsla(270, 55%, 30%, 0.3) 48%,
+      hsla(320, 58%, 28%, 0.25) 60%,
+      hsla(320, 58%, 28%, 0.3) 72%,
+      hsla(270, 55%, 30%, 0.25) 84%,
+      hsla(220, 58%, 30%, 0.3) 100%
+    );
+
+  background-position:
+    calc( 10% + ( var(--pointer-from-left) * 80% ) )
+    calc( 10% + ( var(--pointer-from-top) * 80% ) );
+
+  background-size: 300% 600%;
+  mix-blend-mode: color-dodge;
+  opacity: 0.5;
+}
+
+/* SS grade - spotlight */
+.holo-card.grade-SS .holo-shine::after {
+  background-image:
+    radial-gradient(
+      farthest-corner circle
+        at var(--pointer-x) var(--pointer-y),
+        hsla(0, 0%, 60%, 0.35) 0%,
+        hsla(0, 0%, 30%, 0.05) 25%,
+        transparent 65%
+    );
+  mix-blend-mode: luminosity;
+  filter: brightness(0.5) contrast(3);
+}
+
+/* SS grade glare */
+.holo-card.grade-SS .holo-glare {
+  opacity: calc( var(--card-opacity) * 0.35 );
+}
+
+
+/* ============================================
+   SSS GRADE - Rainbow / Secret Rare
+   ============================================ */
+
+.holo-card.grade-SSS .holo-shine {
+  background-image:
+    linear-gradient(
+      133deg,
+      hsla(330, 75%, 40%, 0.7) 0%,
+      hsla(280, 70%, 36%, 0.6) 10%,
+      hsla(230, 75%, 40%, 0.7) 20%,
+      hsla(195, 80%, 36%, 0.6) 30%,
+      hsla(160, 70%, 33%, 0.7) 40%,
+      hsla(100, 65%, 36%, 0.6) 50%,
+      hsla(60, 75%, 38%, 0.7) 60%,
+      hsla(30, 80%, 36%, 0.6) 70%,
+      hsla(0, 75%, 38%, 0.7) 80%,
+      hsla(330, 75%, 40%, 0.6) 90%,
+      hsla(280, 70%, 36%, 0.7) 100%
+    );
+
+  background-position:
+    calc(((50% - var(--background-x)) * 3.5) + 50%)
+    calc(((50% - var(--background-y)) * 4) + 50%);
+
+  background-size: 250% 250%;
+  filter: brightness(1) saturate(1.4);
+}
+
+/* SSS grade - second shifted layer */
+.holo-card.grade-SSS .holo-shine::before {
+  background-image:
+    linear-gradient(
+      82deg,
+      hsla(60, 60%, 32%, 0.35) 0%,
+      hsla(100, 55%, 30%, 0.3) 12%,
+      hsla(170, 60%, 28%, 0.35) 24%,
+      hsla(220, 62%, 32%, 0.3) 36%,
+      hsla(270, 60%, 32%, 0.35) 48%,
+      hsla(320, 62%, 30%, 0.3) 60%,
+      hsla(320, 62%, 30%, 0.35) 72%,
+      hsla(270, 60%, 32%, 0.3) 84%,
+      hsla(220, 62%, 32%, 0.35) 100%
+    );
+
+  background-position:
+    calc( 15% + ( var(--pointer-from-left) * 70% ) )
+    calc( 15% + ( var(--pointer-from-top) * 70% ) );
+
+  background-size: 300% 600%;
+  mix-blend-mode: color-dodge;
+  opacity: 0.6;
+}
+
+/* SSS grade - third layer (reversed hue) */
+.holo-card.grade-SSS .holo-shine::after {
+  background-image:
+    linear-gradient(
+      200deg,
+      hsla(180, 55%, 28%, 0.25) 0%,
+      hsla(230, 50%, 30%, 0.2) 20%,
+      hsla(290, 48%, 28%, 0.25) 40%,
+      hsla(340, 55%, 28%, 0.2) 60%,
+      hsla(30, 58%, 30%, 0.25) 80%,
+      hsla(80, 52%, 28%, 0.2) 100%
+    );
+
+  background-position:
+    calc( 20% + ( var(--pointer-from-left) * 60% ) )
+    calc( 20% + ( var(--pointer-from-top) * 60% ) );
+
+  background-size: 300% 600%;
+  mix-blend-mode: color-dodge;
+  opacity: 0.45;
+}
+
+/* SSS grade glare */
+.holo-card.grade-SSS .holo-glare {
+  opacity: calc( var(--card-opacity) * 0.4 );
+}
+
+.holo-card.grade-SSS .holo-glare::after {
+  background-image:
+    radial-gradient( farthest-corner circle at
+      var(--pointer-x) var(--pointer-y),
+      hsla(0, 0%, 100%, 0.08) 5%,
+      transparent 50%
+    );
+  mix-blend-mode: soft-light;
+}
+
+
+/* ============================================
+   EDGE GLOW
+   ============================================ */
+
+.holo-card.active.grade-S {
+  box-shadow:
+    0 0 3px -1px rgba(255,255,255,0.3),
+    0 0 8px 1px hsla(175, 80%, 70%, 0.25),
+    0px 8px 20px -5px rgba(0,0,0,0.4) !important;
+}
+
+.holo-card.active.grade-SS {
+  box-shadow:
+    0 0 3px -1px rgba(255,255,255,0.4),
+    0 0 12px 2px hsla(54, 80%, 60%, 0.3),
+    0px 8px 20px -5px rgba(0,0,0,0.4) !important;
+}
+
+.holo-card.active.grade-SSS {
+  box-shadow:
+    0 0 4px -1px rgba(255,255,255,0.5),
+    0 0 15px 3px hsla(281, 60%, 55%, 0.35),
+    0px 8px 20px -5px rgba(0,0,0,0.4) !important;
+}
+
+
+/* ============================================
+   SPARKLES
+   ============================================ */
+
+.holo-sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.4);
+  animation: holo-sparkle-anim 3s ease-in-out infinite;
+}
+
+@keyframes holo-sparkle-anim {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 0.6; transform: scale(1); }
+}
+
+.holo-card.grade-SSS .holo-sparkle {
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.5);
+}
+
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media screen and (max-width: 900px) {
+  .holo-card.grade-S .holo-shine,
+  .holo-card.grade-SS .holo-shine {
+    filter: brightness(0.8) saturate(1);
+  }
+}

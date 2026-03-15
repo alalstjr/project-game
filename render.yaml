@@ -1,0 +1,12 @@
+services:
+  - type: web
+    runtime: node
+    name: project-game
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: pokemon-gacha-secret-key-2026

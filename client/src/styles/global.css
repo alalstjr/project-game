@@ -1,0 +1,142 @@
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #12122a;
+  --bg-card: #1a1a3e;
+  --text-primary: #e8e8f0;
+  --text-secondary: #9898b8;
+  --accent: #6c5ce7;
+  --accent-light: #a29bfe;
+  --danger: #ff4757;
+  --success: #2ed573;
+  --border: #2a2a4a;
+
+  --grade-E: #8B8B8B;
+  --grade-D: #6B8E23;
+  --grade-C: #4682B4;
+  --grade-B: #9370DB;
+  --grade-A: #FF6347;
+  --grade-S: #FFD700;
+  --grade-SS: #FF4500;
+  --grade-SSS: #FF00FF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  opacity: 0.9;
+}
+
+input {
+  font-family: inherit;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--accent);
+}
+
+.grade-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.grade-E { color: var(--grade-E); border: 1px solid var(--grade-E); }
+.grade-D { color: var(--grade-D); border: 1px solid var(--grade-D); }
+.grade-C { color: var(--grade-C); border: 1px solid var(--grade-C); }
+.grade-B { color: var(--grade-B); border: 1px solid var(--grade-B); }
+.grade-A { color: var(--grade-A); border: 1px solid var(--grade-A); background: rgba(255,99,71,0.1); }
+.grade-S { color: var(--grade-S); border: 1px solid var(--grade-S); background: rgba(255,215,0,0.1); }
+.grade-SS { color: var(--grade-SS); border: 1px solid var(--grade-SS); background: rgba(255,69,0,0.15); }
+.grade-SSS { color: var(--grade-SSS); border: 1px solid var(--grade-SSS); background: rgba(255,0,255,0.15); }
+
+/* ===== 모바일 반응형 ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
